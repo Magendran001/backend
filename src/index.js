@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+require("dotenv").config();
 app.use(express.json())
 const connect = require("./db/db");
 var cors = require('cors')
@@ -15,7 +16,7 @@ app.get("/", (req, res) => {
 app.use("", logincontroller)
 app.use("/product", productcontroller)
 
-app.listen(5000, async () => {
+app.listen(process.env.PORT || 5000, async () => {
     await connect
     console.log("listening on 5000 port")
 })
